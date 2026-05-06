@@ -1,147 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <title>KeyCod</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 
 <style>
 body {
-  margin: 0;
+  margin:0;
   font-family: Arial;
-  background: radial-gradient(circle at top, #0a0f2c, #000);
+  background: #0a0f2c;
   color: white;
+  text-align:center;
+  padding-top:100px;
 }
 
-/* NAVBAR */
-.nav {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 60px;
-  align-items: center;
-}
-
-.logo {
-  font-weight: bold;
-  font-size: 20px;
-}
-
-.nav-links a {
-  margin: 0 15px;
-  color: #aaa;
-  text-decoration: none;
-}
-
-.btn {
-  padding: 10px 20px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-}
-
-.btn-primary {
-  background: #3b82f6;
-  color: white;
-}
-
-/* HERO */
-.hero {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 100px 60px;
-}
-
-.hero-text {
-  max-width: 500px;
-}
-
-.hero-text h1 {
-  font-size: 50px;
-  margin: 0;
-}
-
-.hero-text span {
-  color: #3b82f6;
-}
-
-.hero-text p {
-  color: #aaa;
-  margin-top: 20px;
-}
-
-.hero-buttons {
-  margin-top: 30px;
-}
-
-.hero-buttons button {
-  margin-right: 10px;
-}
-
-/* IMAGE */
-.hero-img {
-  width: 500px;
-  height: 300px;
-  background: #111;
-  border-radius: 12px;
-  box-shadow: 0 0 40px rgba(0,0,0,0.5);
-}
-
-/* LOGIN BOX */
-.login-box {
-  position: absolute;
-  top: 120px;
-  right: 60px;
-  background: #111;
-  padding: 20px;
-  border-radius: 10px;
+.box {
+  background:#111;
+  padding:30px;
+  border-radius:10px;
+  width:300px;
+  margin:auto;
 }
 
 input {
-  display: block;
-  margin: 10px 0;
-  padding: 10px;
-  width: 200px;
-  background: #000;
-  border: 1px solid #333;
-  color: white;
+  width:100%;
+  padding:10px;
+  margin:10px 0;
+  background:#000;
+  border:1px solid #333;
+  color:white;
+}
+
+button {
+  width:100%;
+  padding:10px;
+  background:#3b82f6;
+  border:none;
+  color:white;
+  cursor:pointer;
 }
 </style>
 </head>
 
 <body>
 
-<div class="nav">
-  <div class="logo">KeyCod</div>
-  <div class="nav-links">
-    <a href="#">Features</a>
-    <a href="#">Pricing</a>
-    <a href="#">Support</a>
-  </div>
-  <button class="btn btn-primary">Sign up</button>
+<div class="box">
+  <h2>KeyCod 🔥</h2>
+
+  <input id="email" type="email" placeholder="Email">
+  <input id="password" type="password" placeholder="Password">
+
+  <button onclick="signup()">Sign Up</button>
+  <button onclick="login()">Login</button>
+  <button onclick="logout()">Logout</button>
+
+  <p id="status"></p>
 </div>
 
-<div class="hero">
-  <div class="hero-text">
-    <h1>Authentication made for <span>everyone!</span></h1>
-    <p>Secure, scalable system for your website. Build your own login system easily.</p>
+<script>
+const supabase = window.supabase.createClient(
+  "PUT_YOUR_URL_HERE",
+  "PUT_YOUR_KEY_HERE"
+);
 
-    <div class="hero-buttons">
-      <button class="btn btn-primary">Start now</button>
-      <button class="btn">Learn more</button>
-    </div>
-  </div>
+// تسجيل
+async function signup() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
 
-  <div class="hero-img"></div>
-</div>
+  const { error } = await supabase.auth.signUp({ email, password });
 
-<!-- LOGIN -->
-<div class="login-box">
-  <h3>Login</h3>
-  <input type="text" placeholder="Username">
-  <input type="password" placeholder="Password">
-  <button class="btn btn-primary">Login</button>
-</div>
+  document.getElementById("status").innerText =
+    error ? error.message : "تم إنشاء الحساب 🔥";
+}
+
+// تسجيل دخول
+async function login() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  const { error } = await supabase.auth.signInWithPassword({
+    email, password
+  });
+
+  document.getElementById("status").innerText =
+    error ? error.message : "تم تسجيل الدخول ✅";
+}
+
+// تسجيل خروج
+async function logout() {
+  await supabase.auth.signOut();
+  document.getElementById("status").innerText = "تم تسجيل الخروج";
+}
+</script>
 
 </body>
 </html>
