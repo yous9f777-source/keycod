@@ -10,10 +10,41 @@
       text-align: center;
       padding-top: 100px;
     }
+    input {
+      margin: 5px;
+      padding: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      background: purple;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
-  <h1>KeyCod 🔥</h1>
-  <p>Welcome to your real website</p>
+
+<h1>KeyCod 🔥</h1>
+<p>Welcome to your real website</p>
+
+<h2>Login</h2>
+<input type="text" id="username" placeholder="Username"><br>
+<input type="password" id="password" placeholder="Password"><br>
+<button onclick="login()">Login</button>
+
+<script>
+function login() {
+  let user = document.getElementById("username").value;
+  let pass = document.getElementById("password").value;
+
+  if(user === "admin" && pass === "1234"){
+    alert("تم تسجيل الدخول 🔥");
+  } else {
+    alert("خطأ في البيانات ❌");
+  }
+}
+</script>
+
 </body>
 </html>
