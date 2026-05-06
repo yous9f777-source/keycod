@@ -1,50 +1,147 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>KeyCod</title>
-  <style>
-    body {
-      background: black;
-      color: purple;
-      font-family: Arial;
-      text-align: center;
-      padding-top: 100px;
-    }
-    input {
-      margin: 5px;
-      padding: 10px;
-    }
-    button {
-      padding: 10px 20px;
-      background: purple;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>KeyCod</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: radial-gradient(circle at top, #0a0f2c, #000);
+  color: white;
+}
+
+/* NAVBAR */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 60px;
+  align-items: center;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.nav-links a {
+  margin: 0 15px;
+  color: #aaa;
+  text-decoration: none;
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: #3b82f6;
+  color: white;
+}
+
+/* HERO */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 100px 60px;
+}
+
+.hero-text {
+  max-width: 500px;
+}
+
+.hero-text h1 {
+  font-size: 50px;
+  margin: 0;
+}
+
+.hero-text span {
+  color: #3b82f6;
+}
+
+.hero-text p {
+  color: #aaa;
+  margin-top: 20px;
+}
+
+.hero-buttons {
+  margin-top: 30px;
+}
+
+.hero-buttons button {
+  margin-right: 10px;
+}
+
+/* IMAGE */
+.hero-img {
+  width: 500px;
+  height: 300px;
+  background: #111;
+  border-radius: 12px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.5);
+}
+
+/* LOGIN BOX */
+.login-box {
+  position: absolute;
+  top: 120px;
+  right: 60px;
+  background: #111;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+input {
+  display: block;
+  margin: 10px 0;
+  padding: 10px;
+  width: 200px;
+  background: #000;
+  border: 1px solid #333;
+  color: white;
+}
+</style>
 </head>
+
 <body>
 
-<h1>KeyCod 🔥</h1>
-<p>Welcome to your real website</p>
+<div class="nav">
+  <div class="logo">KeyCod</div>
+  <div class="nav-links">
+    <a href="#">Features</a>
+    <a href="#">Pricing</a>
+    <a href="#">Support</a>
+  </div>
+  <button class="btn btn-primary">Sign up</button>
+</div>
 
-<h2>Login</h2>
-<input type="text" id="username" placeholder="Username"><br>
-<input type="password" id="password" placeholder="Password"><br>
-<button onclick="login()">Login</button>
+<div class="hero">
+  <div class="hero-text">
+    <h1>Authentication made for <span>everyone!</span></h1>
+    <p>Secure, scalable system for your website. Build your own login system easily.</p>
 
-<script>
-function login() {
-  let user = document.getElementById("username").value;
-  let pass = document.getElementById("password").value;
+    <div class="hero-buttons">
+      <button class="btn btn-primary">Start now</button>
+      <button class="btn">Learn more</button>
+    </div>
+  </div>
 
-  if(user === "admin" && pass === "1234"){
-    alert("تم تسجيل الدخول 🔥");
-  } else {
-    alert("خطأ في البيانات ❌");
-  }
-}
-</script>
+  <div class="hero-img"></div>
+</div>
+
+<!-- LOGIN -->
+<div class="login-box">
+  <h3>Login</h3>
+  <input type="text" placeholder="Username">
+  <input type="password" placeholder="Password">
+  <button class="btn btn-primary">Login</button>
+</div>
 
 </body>
 </html>
